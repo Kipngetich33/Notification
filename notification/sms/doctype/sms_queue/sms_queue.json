@@ -1,0 +1,77 @@
+{
+ "creation": "2021-09-30 14:03:10.521452",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "status",
+  "recipient",
+  "message",
+  "resend",
+  "other_section",
+  "resending"
+ ],
+ "fields": [
+  {
+   "fieldname": "recipient",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Recipient"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "\nSending Failed\nSent",
+   "read_only": 1
+  },
+  {
+   "fieldname": "message",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Message"
+  },
+  {
+   "depends_on": "eval:doc.status == 'Sending Failed';",
+   "fieldname": "resend",
+   "fieldtype": "Button",
+   "label": "Resend"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "other_section",
+   "fieldtype": "Section Break",
+   "label": "Other"
+  },
+  {
+   "default": "0",
+   "fieldname": "resending",
+   "fieldtype": "Check",
+   "label": "Resending",
+   "read_only": 1
+  }
+ ],
+ "modified": "2021-09-30 16:17:06.054914",
+ "modified_by": "Administrator",
+ "module": "SMS",
+ "name": "SMS Queue",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
