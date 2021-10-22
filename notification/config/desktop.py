@@ -7,7 +7,7 @@ def get_data():
 		{
 			"module_name": "Notification",
 			"color": "grey",
-			"icon": "octicon octicon-file-directory",
+			"icon": "octicon octicon-megaphone",
 			"type": "module",
 			"label": _("Notification")
 		}
