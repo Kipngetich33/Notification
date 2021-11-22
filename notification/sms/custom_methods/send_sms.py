@@ -1,5 +1,8 @@
 import frappe
 import africastalking
+from water.custom_methods.reusable_methods import get_settings
+from decouple import config
+
 
 class SMSClass:
     '''
@@ -10,16 +13,20 @@ class SMSClass:
         '''
         Class constructor
         '''
-        # upande credentials
-        # africastalking.initialize(
-        #     username='upande_mobile',
-        #     api_key='196a69821c1efd4fa9655e220c20c74a7cbad2b5364a318210348e64c4cf93e8'
-        # )
-        # sandbox credetails
-        africastalking.initialize(
-            username='sandbox',
-            api_key='d53b8a4e4d0e07dbb9b636af6190de3728c8ed41e1e92db911d0d966bb587f60'
-        )
+        #check if app is in production
+        notification_settings = get_settings("Notifications Settings")
+        if notification_settings.production:
+            # upande credentials
+            africastalking.initialize(
+                username= config('africastalking_username_prod'),
+                api_key=config('africastalking_api_key_prod')
+            )
+        else:
+            # sandbox credetails
+            africastalking.initialize(
+                username= config('africastalking_username_test'),
+                api_key=config('africastalking_api_key_test')
+            )
         #add sms as an isinstance of the class
         self.sms_instance = africastalking.SMS
 
